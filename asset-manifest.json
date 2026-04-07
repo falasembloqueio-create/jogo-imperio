@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jogo-imperio/static/css/main.731d4cdd.css",
-    "main.js": "/jogo-imperio/static/js/main.907b2567.js",
+    "main.css": "/jogo-imperio/static/css/main.92863af6.css",
+    "main.js": "/jogo-imperio/static/js/main.57138368.js",
     "static/js/453.c6ccb05c.chunk.js": "/jogo-imperio/static/js/453.c6ccb05c.chunk.js",
     "index.html": "/jogo-imperio/index.html",
-    "main.731d4cdd.css.map": "/jogo-imperio/static/css/main.731d4cdd.css.map",
-    "main.907b2567.js.map": "/jogo-imperio/static/js/main.907b2567.js.map",
+    "main.92863af6.css.map": "/jogo-imperio/static/css/main.92863af6.css.map",
+    "main.57138368.js.map": "/jogo-imperio/static/js/main.57138368.js.map",
     "453.c6ccb05c.chunk.js.map": "/jogo-imperio/static/js/453.c6ccb05c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.731d4cdd.css",
-    "static/js/main.907b2567.js"
+    "static/css/main.92863af6.css",
+    "static/js/main.57138368.js"
   ]
 }
