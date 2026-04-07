@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+body, html, #root { margin: 0; padding: 0; background: #000; overflow: hidden; font-family: 'Impact', sans-serif; }
+.screen { width: 100vw; height: 100vh; position: absolute; color: #fff; }
+.center { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.sky-gradient {
+  position: absolute; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  z-index: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gta-title { font-size: 100px; -webkit-text-stroke: 2px #fff; color: transparent; filter: drop-shadow(5px 5px #8b0000); }
+.gta-btn { padding: 15px 40px; font-size: 22px; background: #fff; border: none; cursor: pointer; box-shadow: 5px 5px #8b0000; margin: 10px; color: #000; text-transform: uppercase; font-weight: bold; }
+.gta-btn.red { background: #ff4757; color: #fff; }
+
+.map-scroll { position: absolute; width: 10000px; height: 100%; top: 0; z-index: 1; }
+
+/* EDIFÍCIOS MELHORADOS */
+.building { 
+  position: absolute; bottom: 180px; width: 380px; height: 550px; 
+  display: flex; justify-content: center; align-items: flex-start;
+  border-top: 10px solid rgba(255,255,255,0.1);
+}
+.facade { 
+  width: 90%; height: 85%; margin-top: 20px; border: 4px solid rgba(255,255,255,0.05);
+  display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.2);
+}
+.facade span { 
+  background: #000; color: #fff; padding: 12px 25px; margin-top: 20px; 
+  font-size: 28px; border: 3px solid #fff; letter-spacing: 2px;
+}
+.window { width: 50px; height: 70px; background: #f1c40f; margin-top: 40px; box-shadow: 0 0 15px #f1c40f; border-radius: 2px; }
+.neon-light { width: 120px; height: 12px; background: #e84393; margin-top: 60px; box-shadow: 0 0 25px #e84393; border-radius: 10px; }
+
+.hotel { background: linear-gradient(#2d3436, #1e272e); border-bottom: 12px solid #b2bec3; }
+.bank { background: linear-gradient(#34495e, #2c3e50); border-bottom: 12px solid #2ecc71; }
+.club { background: linear-gradient(#1e1e1e, #000); border-bottom: 12px solid #e84393; }
+.shop { background: linear-gradient(#4b4b4b, #c0392b); border-bottom: 12px solid #ff4757; }
+
+/* CALÇADAS E RUA */
+.sidewalk { position: absolute; width: 100%; z-index: 5; }
+.sidewalk.far { bottom: 180px; height: 60px; background: #555; border-top: 4px solid #333; }
+.curb-yellow-line {
+  position: absolute; bottom: 0; width: 100%; height: 5px;
+  background: repeating-linear-gradient(90deg, #f1c40f, #f1c40f 50px, #333 50px, #333 100px);
+}
+.sidewalk.near { bottom: 0; height: 45px; background: #444; border-top: 5px solid #222; }
+.sidewalk-texture {
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(90deg, transparent, transparent 160px, rgba(0,0,0,0.15) 160px, rgba(0,0,0,0.15) 164px);
+}
+.road { position: absolute; bottom: 45px; width: 100%; height: 135px; background: #1a1a1a; }
+.road-lines { 
+  width: 100%; margin-top: 65px; height: 6px;
+  border-top: 6px dashed rgba(255,255,255,0.15);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* OBJETOS E SPRITES */
+.prop { position: absolute; z-index: 6; }
+.light-pole { width: 10px; height: 320px; background: #222; bottom: 0; }
+.light-pole::after { 
+  content: ''; position: absolute; top: 0; left: -25px; 
+  width: 60px; height: 15px; background: #fff9c4; border-radius: 5px; box-shadow: 0 0 40px #f1c40f; 
 }
+.trash { width: 40px; height: 50px; background: #2c3e50; bottom: 5px; border-radius: 4px; }
+.hydrant { width: 24px; height: 40px; background: #c0392b; bottom: 5px; border-radius: 5px; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.player-sprite { position: absolute; left: 50%; transform: translateX(-50%); width: 100px; z-index: 100; }
+.player-sprite.flip { transform: translateX(-50%) scaleX(-1); }
+.player-sprite img { width: 100%; filter: drop-shadow(0 20px 10px rgba(0,0,0,0.8)); }
 
-.App-link {
-  color: #61dafb;
+.enemy-sprite { 
+  position: absolute; bottom: 50px; width: 95px; height: 115px; 
+  background: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Gangster&accessories=sunglasses&clothing=graphicShirt&clothingColor=262e33'); 
+  background-size: contain; background-repeat: no-repeat; z-index: 90; 
 }
+.npc-hp { width: 100%; height: 6px; background: #333; position: absolute; top: -15px; }
+.npc-hp div { height: 100%; background: #ff4757; transition: width 0.2s; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.bullet { position: absolute; width: 35px; height: 5px; border-radius: 2px; z-index: 110; }
+.pl-b { background: #fff; box-shadow: 0 0 10px #fff; }
+.en-b { background: #ff4757; box-shadow: 0 0 10px #ff0000; }
+
+.hud-top { position: absolute; top: 20px; left: 20px; z-index: 200; }
+.hp-bar { font-size: 30px; background: rgba(0,0,0,0.85); padding: 12px 25px; border-left: 12px solid #ff4757; }
+
+.wasted-screen { background: rgba(139, 0, 0, 0.5); backdrop-filter: grayscale(1) blur(3px); z-index: 1000; }
+.wasted-text { font-size: 150px; color: #ff4757; font-style: italic; text-shadow: 0 0 30px #000; }
